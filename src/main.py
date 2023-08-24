@@ -54,8 +54,25 @@ def create_combinations(data):
 
 # Streamlit app
 def main():
-    st.title('Product Bundling App')
-
+    st.title('Product Bundling :package:')
+    st.markdown('Elevate Sales: Unleash Profitable Possibilities with Data-Driven Product Bundling!')
+    
+    # About section
+    st.header('About :exclamation:')
+    st.markdown("""
+    Unlock the power of your transaction data to **uncover fascinating patterns** in customer behavior. This app is your key to **unveiling the perfect product pairs** that are often purchased together. With these insights at your fingertips, crafting irresistible product bundles becomes a breeze.
+    Say goodbye to the uncertainty of ineffective bundling strategies – this app ensures you're always offering dynamic combinations that captivate your customers and drive sales! :smile:
+    """)
+    
+    # How to use section
+    st.header('How to use :question:')
+    st.markdown("""
+    1. Set your goal: Boost popular items or revitalize lesser-known products using the `Popular Items` table.
+    2. Craft your pairing: Select 1 item from dropdown menu, then explore item synergies through the `Item Combinations` table.
+    3. The higher the `Prob (%)`, the stronger the buying bond. Seize the opportunity and set the perfect price for your data-driven product bundles!
+    Go try it yourself! :point_down:
+    """)
+    
     # Read data from CSV file
     data = pd.read_csv('./data/groceries_dataset.csv')
 
@@ -77,17 +94,34 @@ def main():
 
     with col1:
         # Display popular items table
-        st.subheader('Popular Items')
+        st.subheader('Popular Items :rice_ball:')
         sorted_popular_items_data = popular_items_data.sort_values(by='Trx A', ascending=False)
         st.dataframe(sorted_popular_items_data, hide_index=True)
 
     with col2:
         # Display item combinations table
-        st.subheader(f'Item Combinations')
+        st.subheader(f'Item Combinations :fried_shrimp:')
         sorted_filtered_data = filtered_data.sort_values(by='Trx AB', ascending=False)
         
         # Adjust table width to fit content
         st.dataframe(sorted_filtered_data, hide_index=True)
+        
+    st.subheader("Here's your insight! :mag:")    
+    st.markdown("""
+    So, you select `{}`. Based on transaction data, your customer usually bought `{}` too with probability `{}%`. Easy isn't it?
+    """.format(selected_item, sorted_filtered_data['Item B'].values[0], sorted_filtered_data['Prob (%)'].values[0]))
+    
+    # Expander for upgraded version
+    with st.expander('Upgraded version :heavy_plus_sign:'):
+        st.markdown("""
+        You can upgrade the app to have third, fourth, and nth item! Additionally, you can have time selection, e.g., `Last 1 Month`, `Last 3 Month`, or `All Time`, so you can get relevant bundle idea that follows the current trend.
+        """)
+        
+    # Contact information
+    st.header('Interested in this app? :thought_balloon:')
+    st.markdown("""
+    Feel free to contact me via GitHub or email. I'll gladly help you to create this app for your business. Thanks for coming! :grin:
+    """)
 
 if __name__ == '__main__':
     main()
