@@ -120,7 +120,7 @@ def main():
     # Contact information
     st.header('Interested in this app? :thought_balloon:')
     st.markdown("""
-    Feel free to contact me via GitHub or email. I'll gladly help you to create this app for your business. Thanks for coming! :grin:
+    Feel free to contact me via GitHub or email. I'll gladly help you to create this app for you. Thanks for coming! :grin:
     """)
 
 if __name__ == '__main__':
